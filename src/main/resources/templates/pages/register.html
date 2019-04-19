@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Home</title>
+    <script type="text/javascript"  src="login/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="login/jq%20va/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="login/jq%20va/dist/localization/messages_zh.js"></script>
+    <script type="text/javascript" src="login/register.check.js"></script>
+<!-- Custom Theme files -->
+<link href="login/style1.css" rel="stylesheet" type="text/css" media="all"/>
+
+<!-- Custom Theme files -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<!--Google Fonts-->
+<link href='http://fonts.useso.com/css?family=Roboto:500,900italic,900,400italic,100,700italic,300,700,500italic,100italic,300italic,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<!--Google Fonts-->
+
+<script>
+    var count;
+    $(document).ready(function () {
+        count=parseInt(getvalue("验证码"));
+        if(count>=0)
+        {settime1($("#123"));}
+    });
+
+    $(document).ready(function () {
+        $("#123").click(function () {
+            if($("#registerForm").valid()==false){return;}
+            addcookie("验证码","60");
+            settime1($("#123"));
+            alert("验证码发送成功，请去邮箱查看！");
+        })
+    });
+
+
+    function addcookie(name,value) {                 //value填写需要倒计时的时间
+
+
+        var cookieString=name+"="+escape(value);
+        document.cookie=cookieString;
+    }
+    function setcookie(name,value) {
+        var cookieString=name+"="+escape(value);
+        document.cookie=cookieString;
+    }
+    function getvalue(name) {
+        var strCookie = document.cookie;
+            var arr = strCookie.split("=");
+            if (arr[0] == name) {
+                return unescape(arr[1]);
+            }
+
+    }
+
+    function settime1(obj) {
+        count=parseInt(getvalue("验证码"));
+        if(count<=0){
+            obj.attr("disabled",false);
+            obj.val('点击发送激活码');
+            obj.css("background-color","#F45B4B");
+            return;
+        }
+        else {
+            obj.attr("disabled",true); //将按钮置为不可点击
+            obj.val(count+'秒后可重新获取');
+            obj.css("background-color","#818181");
+            count=count-1;
+            setcookie("验证码",count.toString());
+        }
+        setTimeout(function () {
+            settime1(obj);},1000);
+    }
+</script>
+
+<style type="text/css">
+    .error{
+        font-size: 12px;
+        color:red;
+    }
+</style>
+</head>
+<body>
+<div class="login">
+	<h2>Acced Form</h2>
+	<div class="login-top">
+		<h1>注册账号</h1>
+		<form id="registerForm" action="dealRegister" method="post">
+			<p><input id="email" type="text" placeholder="请输入你的邮箱"   tabindex="1" name="email"></p>
+            <p><input type="text" placeholder="用户名(字母和数字)"  maxlength="16" tabindex="2" id="name" name="username"></p>
+            <p><input type="password" placeholder="请输入密码"  maxlength="16" tabindex="3" id="sct" name="password" ></p>
+            <p><input type="password" placeholder="确认密码"  maxlength="16" tabindex="4" id="resct" name="resct" ></p>
+            <!--<input id="yanz" type="text" placeholder="验证码"  tabindex="2" name="yanz">-->
+            <input type="button" value="点击发送激活邮件" id="123">
+        <div class="forgot">
+            <a href="#">忘记密码?</a>
+            <input type="submit" value="完成" >
+        </div>
+        </form>
+	</div>
+	<div class="login-bottom">
+		<h3>如果有账号请直接&nbsp<a href="login.html">登陆</a></h3>
+	</div>
+</div>	
+
+
+
+</body>
+</html>

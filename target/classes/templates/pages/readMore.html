@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>今日小站</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.dropotron.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<script src="js/init.js"></script>
+
+	<noscript>
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-wide.css" />
+	</noscript>
+	<script>
+        window.onload=getContent();
+        window.onload=Content1();
+        function getContent(){
+            $.ajax({
+                url:"pages/getNewsContent?id=[[${id}]]",
+                dataType:'JSON',
+                cache:false,
+                timeout:600000,
+                success:function (data) {
+                    var a=JSON.stringify(data,null,4);
+                    //var b=JSON.parse(data);
+                    var b=JSON.parse(a);
+
+                    $('#title').html(b.title);
+                    $('#content').html(b.content);
+                }
+            })
+        };
+
+
+          function  Content1() {
+                $.ajax({
+                    url: "ReadMore?id=[[${id}]]",
+                    dataType: 'JSON',
+                    cache: false,
+                    timeout: 600000,
+                    success: function (data) {
+                        var a = JSON.stringify(data, null, 4);
+                        //var b=JSON.parse(data);
+                        var b = JSON.parse(a);
+                        var i = 0;
+                        for (i; i < 6; i++) {
+                            var point = (i + 1).toString();
+                            var str1 = "#href" + point;
+                            var str2 = "#content" + point;
+                            $(str1).attr("href", b[i].url);
+                            $(str2).text(b[i].title);
+                            $(str2).attr("href", b[i].url);
+                            // alert(b[1].id);
+                        }
+                    }
+                })
+            }
+
+
+	</script>
+
+	<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Wrapper -->
+<div class="wrapper style1">
+
+	<!-- Header -->
+	<div id="header" class="skel-panels-fixed">
+		<div id="logo">
+			<h1><a href="index.html">今日小站</a></h1>
+			<span class="tag">by LuoChan</span>
+		</div>
+		<nav id="nav">
+			<ul>
+				<li class="active"><a href="index.html">主页</a></li>
+				<li><a href="/pages/SelfIntrodution">关于本站</a></li>
+			</ul>
+		</nav>
+	</div>
+	<!-- Header -->
+
+	<!-- Page -->
+	<div id="page" class="container">
+		<section>
+			<header class="major">
+				<h2 id="title"></h2>
+			</header>
+			<p id="content"></p>
+		</section>
+	</div>
+	<a href="#">
+		<div id="gotop1"> <strong>回到顶部</strong></div>
+	</a>
+	<!-- /Page -->
+
+	<!-- Main -->
+	<!--<div id="main1">
+		<p id="rea"><h1 style="color: blue">相关推荐:</h1></p>
+	</div>
+	<div id="main2">
+		<div class="main3">
+			<div class="im" id="im1" style="display: inline"><a id="href1" href="#"><img class="img" src="images/a1.jpg"></a>
+				<a class="contents" href="#" id="content1"><p style="display: inline"><strong>更多内容</strong></p></a>
+			</div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im2" style="display: inline"><a id="href2" href="#"><img class="img" src="images/a2.jpg"></a>
+				<a class="contents" href="#" id="content2"><p style="display: inline"><strong>更多内容</strong></p></a>
+			</div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im3" style="display: inline"><a id="href3" href="#"><img class="img" src="images/a3.jpg"></a>
+				<a class="contents" href="#" id="content3"><p style="display: inline"><strong>更多内容</strong></p></a>
+			</div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im4" style="display: inline"><a id="href4" href="#"><img class="img" src="images/a4.jpg"></a>
+				<a class="contents" href="#" id="content4"><p style="display: inline;"><strong>更多内容</strong></p></a>
+			</div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im5" style="display: inline"><a id="href5" href="#"><img class="img" src="images/a5.jpg" ></a>
+				<a class="contents" href="#" id="content5"><p style="display: inline" ><strong>更多内容</strong></p></a>
+			</div>
+		</div>
+		<div class="main3" id="main3">
+			<div class="im" id="im6" style="display: inline"><a  id="href6" href="#"><img class="img" src="images/a6.jpg"></a>
+				<a class="contents" href="#" id="content6"><p style="display: inline"><strong>更多内容</strong></p></a>
+			</div>
+		</div>
+	</div>-->
+	<div id="main1">
+		<p id="rea"><h1>相关推荐:</h1></p>
+	</div>
+	<div id="main2">
+		<div class="main3" id="first">
+			<div class="im" id="im1" style="display: inline-block"><a id="href1" href="#"><img class="img" src="b.jpg"></a></div>
+			<div class="neir">	<a class="contents" href="#" id="content1"><p class="namep"><strong>更多内容</strong></p></a></div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im2" style="display: inline-block"><a id="href2" href="#"><img class="img" src="b.jpg"></a></div>
+			<div class="neir" ><a class="contents" href="#" id="content2"><p class="namep"><strong>更多内容</strong></p></a></div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im3" style="display: inline-block"><a id="href3" href="#"><img class="img" src="b.jpg"></a></div>
+			<div class="neir" >	<a class="contents" href="#" id="content3"><p class="namep"><strong>更多内容</strong></p></a></div>
+		</div>
+		<div class="main3">
+			<div class="im" id="im4" style="display: inline-block"><a id="href4" href="#"><img class="img" src="b.jpg"></a></div>
+			<div class="neir" >	<a class="contents" href="#" id="content4"><p class="namep"><strong>更多内容</strong></p></a></div>
+
+		</div>
+		<div class="main3">
+			<div class="im" id="im5" style="display: inline-block"><a id="href5" href="#"><img class="img" src="b.jpg" ></a></div>
+			<div class="neir" >	<a class="contents" href="#" id="content5"><p class="namep"><strong>更多内容</strong></p></a></div>
+
+		</div>
+		<div class="main3" id="chenluo">
+			<div class="im" id="im6" style="display: inline-block"><a  id="href6" href="#"><img class="img" src="b.jpg"></a></div>
+			<div class="neir"><a class="contents" href="#" id="content6"><p class="namep"><strong>更多内容当时的v啊还是广东是个大傻祷告萨汗国的萨汗国的价格大厦的婚纱十大首富</strong></p></a></div>
+		</div>
+	</div>
+</div>
+
+				<!-- Content -->
+
+	<!-- /Main -->
+
+
+
+<!-- Footer -->
+<div id="footer" class="wrapper style2">
+	<div class="container">
+		<section>
+			<header class="major">
+				<h2>Mauris vulputate dolor</h2>
+				<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
+			</header>
+			<form method="post" action="#">
+				<div class="row half">
+					<div class="12u">
+						<input class="text" type="text" name="name" id="name" placeholder="Name" />
+					</div>
+				</div>
+				<div class="row half">
+					<div class="12u">
+						<input class="text" type="text" name="email" id="email" placeholder="Email" />
+					</div>
+				</div>
+				<div class="row half">
+					<div class="12u">
+						<textarea name="message" id="message" placeholder="Message"></textarea>
+					</div>
+				</div>
+				<div class="row half">
+					<div class="12u">
+						<ul class="actions">
+							<li>
+								<input type="submit" value="Send Message" class="button alt" />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</div>
+<!-- /Footer -->
+
+<!-- Copyright -->
+<div id="copyright">
+	<div class="container"> <span class="copyright">Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+		<ul class="icons">
+			<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
+			<li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+			<li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
+		</ul>
+	</div>
+</div>
+
+
+</body>
+</html>
