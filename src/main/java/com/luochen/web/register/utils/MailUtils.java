@@ -49,7 +49,7 @@ public class MailUtils implements Runnable {
             // 1.获取默认session对象（创建连接对象，连接到邮箱服务器）
             Session session = Session.getDefaultInstance(properties, new Authenticator() {
                 public PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("jinrixiaozhan@163.com", "luo1329127421"); // 发件人邮箱账号、密码
+                    return new PasswordAuthentication("jinrixiaozhan@163.com", "password"); // 发件人邮箱账号、密码
                 }
             });
 
