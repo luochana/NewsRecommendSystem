@@ -1,2 +1,3 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+*.js linguist-language=Scala
+*.css linguist-language=Scala
+*.html linguist-language=Scala
